@@ -1,0 +1,71 @@
+<%- include("../partials/header")-%>
+
+<div class="container mt-5">
+ <div class="row">
+   
+        <div class="col-sm-12">
+            <div class="jumbotron">
+                <div class="accdetails">
+                    <strong>账号</strong>: <%= account.accountno%>
+                </div>
+                <div class="accdetails">
+                    <strong>用户名</strong>: <%= account.accountname%>
+                </div>
+                <div class="accdetails">
+                    <strong>分行</strong>: <%= account.branch%>
+                </div>
+                <div class="accdetails">
+                    <strong>余额</strong>: <%= account.balance%>
+                </div>
+                <div class="accdetails">
+                    <strong>帐户类型</strong>: <%= account.accounttype%>
+                </div>
+                <div class="accdetails">
+                    <strong>电话</strong>: <%= account.mobile%>
+                </div>
+                <div class="accdetails">
+                    <strong>Email</strong>: <%= account.email%>
+                </div>
+                <div class="accdetails">
+                    <strong>地址</strong>: <%= account.address%>
+                </div>
+            </div>
+            <div class="row">
+                
+                <% if(!account.isCredit){%>
+                <div class="col-sm-3">
+                        <form action="/cus/profile/acc/<%= account._id%>/gencard" method="POST">
+                            <input name="type" type="hidden" value="credit">
+                            <input type="submit"class="btn btn-success" value="GENERATE CREDIT CARD" id="">
+                        </form>
+                       
+                </div>
+                <%} if(!account.isDebit){%>
+                    <div class="col-sm-6">
+                        <form action="/cus/profile/acc/<%= account._id%>/gencard" method="POST">
+                            <input name="type" type="hidden" value="debit">
+                            <input type="submit"class="btn btn-success" value="GENERATE DEBIT CARD" id="">
+                        </form>
+                    </div>
+                <%}%>
+            </div>
+            <div class="row">
+                <% account.card.forEach(function(card){%>
+                    <div class="col-md-3 mt-3">
+                        <div class="card p-3 text-center">
+                            
+                            <strong>卡号:</strong><%= card.cardno%></h5>
+                            <strong>CVV:</strong><%= card.cvv%></h5>
+                            <strong>到期日</strong><%= card.expirationDate%></h5>
+                            <strong>卡的种类</strong><%= card.cardType%></h5>
+
+                    
+                        </div>
+                    </div>
+               <% })%>
+            </div>
+        </div>
+        
+    </div>
+</div>
+<%- include("../partials/footer")-%>

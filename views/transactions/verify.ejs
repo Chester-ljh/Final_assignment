@@ -1,0 +1,16 @@
+<%- include("../partials/header")-%>
+
+    <div class="login pt-5">
+        <h3>检查您的邮件是否有 OTP</h3>
+        <br>
+        <form method="POST" action="/cus/transactions/<%=accountid%>/verify">
+            <div class="form-group">
+            <label for="exampleInputEmail1">验证码</label>
+            <input type="number" required class="form-control" value="" required name="randcode" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <button type="submit" class="btn btn-primary">添加</button>
+          </form>
+    </div>
+
+    
+<%- include("../partials/footer")-%>

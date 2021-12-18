@@ -1,0 +1,20 @@
+<%- include("../partials/header")-%>
+<div class="container mt-5">
+<p>        选择您的帐户以获取收款人详细信息</p>
+    <div class="row">
+
+        <% customer.account.forEach(function(account){%>
+            <div class="col-md-3 mt-3">
+                <div class="card p-3 text-center">
+                    
+                    <strong>用户名</strong>:<%= account.accountname%>
+                    <strong>账户编号.</strong>:<%= account.accountno%>
+                    <div><a href="/cus/benificiary/<%=account._id%>" class="btn btn-primary">选择</a></div>
+            
+                </div>
+            </div>
+       <% })%>
+    </div>
+</div>   
+    
+<%- include("../partials/footer")-%>

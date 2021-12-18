@@ -1,0 +1,47 @@
+<%- include("../partials/header")-%>
+<div class="container">
+
+    <h2>收款人账户</h2>
+    <div>
+      <a href="/cus/benificiary/<%=account._id%>/new" class="btn btn-success mt-4 mb-4">添加收款人账户</a>
+  
+    </div>
+    <br>
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <br>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>账号</th>
+          <th>电话</th>
+          <th>Email</th>
+          <th>删除</th>
+        </tr>
+      </thead>
+      <tbody id="myTable">
+          <%account.benificiary.forEach(function(account1){%>
+        <tr>
+          <td> <%=account1.accountno%> </td>
+          <td><%=account1.mobile%></td>
+          <td><%=account1.email%></td>
+          <!-- <td><%=account.address%></td> -->
+          <td><a href="/cus/benificiary/<%= account._id%>/<%=account1._id%>" class="btn btn-primary">删除</a></td>
+        </tr>
+        <%})%>
+      </tbody>
+    </table>
+</div>
+
+
+
+
+<script>$(document).ready(function(){
+    $("#myInput").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });</script>
+    
+<%- include("../partials/footer")-%>

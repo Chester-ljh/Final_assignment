@@ -1,0 +1,46 @@
+<%- include("../partials/header")-%>
+<div class="container">
+    <h2>顾客</h2>
+    <p>可以在此处找到所有帐户客户</p>  
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <br>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>姓名</th>
+          <th>性别</th>
+          <th>出生日期</th>
+          <th>电话</th>
+          <th>email</th>
+          <th>view</th>
+        </tr>
+      </thead>
+      <tbody id="myTable">
+          <%customers.forEach(function(customer){%>
+        <tr>
+          <td> <%=customer.username%> </td>
+          <td><%=customer.gender%></td>
+          <td><%=customer.dob%></td>
+          <td><%=customer.mobile%></td>
+          <td><%=customer.email%></td>
+          <td><a href="/emp/customers/<%=customer._id%>" class="btn btn-primary">Show</a></td>
+        </tr>
+        <%})%>
+
+      </tbody>
+    </table>
+</div>
+
+
+
+
+<script>$(document).ready(function(){
+    $("#myInput").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });</script>
+    
+<%- include("../partials/footer")-%>

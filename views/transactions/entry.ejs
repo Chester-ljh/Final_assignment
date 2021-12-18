@@ -1,0 +1,19 @@
+<%- include("../partials/header")-%>
+<div class="container mt-5">
+    选择您要开始交易的帐户
+    <div class="row">
+        <% customer.account.forEach(function(account){%>
+            <div class="col-md-3 mt-3">
+                <div class="card p-3 text-center">
+                    
+                    <strong>用户名</strong>:<%= account.accountname%>
+                    <strong>账户编号</strong>:<%= account.accountno%>
+                    <div><a href="/cus/transactions/<%=account._id%>/sendMail?to=<%=account.email%>" class="btn btn-primary">Select</a></div>
+            
+                </div>
+            </div>
+       <% })%>
+    </div>
+</div>   
+    
+<%- include("../partials/footer")-%>

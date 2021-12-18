@@ -1,0 +1,50 @@
+<%- include("../partials/header")-%>
+<div class="container">
+    <h2>帐户请求</h2>
+    <p>接受客户提出的要求</p>  
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <br>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>账号</th>
+          <th>用户名</th>
+          <th>分行</th>
+          <th>账户类型</th>
+          <th>电话号</th>
+          <th>Email</th>
+          <th>地址</th>
+          <th>状态</th>
+        </tr>
+      </thead>
+      <tbody id="myTable">
+          <%accounts.forEach(function(account){%>
+        <tr>
+          <td> <%=account.accountno%> </td>
+          <td><%=account.accountname%></td>
+          <td><%=account.branch%></td>
+          <td><%=account.accounttype%></td>
+          <td><%=account.mobile%></td>
+          <td><%=account.email%></td>
+          <td><%=account.address%></td>
+          <td><a href="/emp/requests/<%=account._id%>" class="btn btn-primary">接受</a></td>
+        </tr>
+        <%})%>
+
+      </tbody>
+    </table>
+</div>
+
+
+
+
+<script>$(document).ready(function(){
+    $("#myInput").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });</script>
+    
+<%- include("../partials/footer")-%>
